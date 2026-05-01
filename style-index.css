@@ -1,0 +1,102 @@
+body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* O Canvas fica no fundo de tudo */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* O conteúdo (fotos e texto) fica acima dos corações */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            pointer-events: none;
+            max-width: 90%;
+        }
+
+        /* --- Estilização das Fotos Flutuantes --- */
+        .photo-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            pointer-events: auto;
+        }
+
+        .floating-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid #ff4d4d;
+            box-shadow: 0 0 25px rgba(255, 77, 77, 0.6);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Segunda foto com animação levemente diferente */
+        .photo-2 {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+        }
+
+        /* --- Texto e Títulos --- */
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px #ff4d4d;
+            margin: 10px 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.3); /* Fundo sutil para ler melhor entre os corações */
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        /* Botão de Áudio */
+        .audio-control {
+            position: fixed;
+            bottom: 30px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 25px;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            border: 1px solid #ff4d4d;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+        .audio-control:hover {
+            background: #ff4d4d;
+            transform: scale(1.05);
+        }
+
+        /* Responsividade para celular */
+        @media (max-width: 600px) {
+            .floating-photo { width: 110px; height: 110px; }
+            h1 { font-size: 1.8rem; }
+            p { font-size: 1rem; }
+        }
